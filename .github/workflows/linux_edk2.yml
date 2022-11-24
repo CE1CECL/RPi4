@@ -64,13 +64,6 @@ jobs:
         done
         cp Build/RPi4/RELEASE_${{ env.COMPILER }}/FV/RPI_EFI.fd .
 
-    - name: Upload UEFI firmware artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: RPi4 UEFI Firmware ${{ steps.set_version.outputs.version }} Artifacts
-        path: |
-          Build/RPi4/**/FV/RPI_EFI.fd
-
     - name: Download Raspberry Pi support files
       run: |
         curl -O -L ${{ env.RPI_FIRMWARE_URL }}/raw/${{ env.START_ELF_VERSION }}/boot/fixup4.dat
@@ -94,4 +87,3 @@ jobs:
       with:
          name: RPi4_UEFI_Firmware
          path: ./*
-   
