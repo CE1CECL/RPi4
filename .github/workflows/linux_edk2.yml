@@ -76,12 +76,6 @@ jobs:
         mkdir overlays
         mv *.dtbo overlays
 
-    - name: Create UEFI firmware archive
-      run: zip -r RPi4_UEFI_Firmware_${{ steps.set_version.outputs.version }}.zip RPI_EFI.fd *.dtb config.txt fixup4.dat start4.elf overlays Readme.md firmware
-
-    - name: Display SHA-256
-      run: sha256sum Build/RPi4/*/FV/RPI_EFI.fd RPi4_UEFI_Firmware_${{ steps.set_version.outputs.version }}.zip
-
     - name: Upload RPi4_UEFI_Firmware
       uses: actions/upload-artifact@v3
       with:
